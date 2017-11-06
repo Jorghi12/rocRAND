@@ -236,7 +236,7 @@ void hiprand_kernel_h_hiprand_init_test()
         states, states_size,
         seed, offset
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
     HIP_CHECK(hipDeviceSynchronize());
     HIP_CHECK(hipFree(states));
 }
@@ -278,7 +278,7 @@ TEST(hiprand_kernel_h_philox4x32_10, hiprand_init_nvcc)
         states, states_size,
         seed, offset
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
 
     std::vector<state_type> states_host(states_size);
     HIP_CHECK(
@@ -333,7 +333,7 @@ TEST(hiprand_kernel_h_philox4x32_10, hiprand_skip_nvcc)
         states, states_size,
         seed, offset
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
 
     std::vector<state_type> states_host(states_size);
     HIP_CHECK(
@@ -374,7 +374,7 @@ void hiprand_kernel_h_hiprand_test()
         dim3(4), dim3(64), 0, 0,
         output, output_size
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
 
     std::vector<unsigned int> output_host(output_size);
     HIP_CHECK(
@@ -429,7 +429,7 @@ void hiprand_kernel_h_hiprand_uniform_test()
         dim3(4), dim3(64), 0, 0,
         output, output_size
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
 
     std::vector<float> output_host(output_size);
     HIP_CHECK(
@@ -484,7 +484,7 @@ void hiprand_kernel_h_hiprand_normal_test()
         dim3(4), dim3(64), 0, 0,
         output, output_size
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
 
     std::vector<float> output_host(output_size);
     HIP_CHECK(
@@ -547,7 +547,7 @@ void hiprand_kernel_h_hiprand_log_normal_test()
         dim3(4), dim3(64), 0, 0,
         output, output_size
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
 
     std::vector<float> output_host(output_size);
     HIP_CHECK(
@@ -614,7 +614,7 @@ void hiprand_kernel_h_hiprand_poisson_test(double lambda)
         dim3(4), dim3(64), 0, 0,
         output, output_size, lambda
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
 
     std::vector<unsigned int> output_host(output_size);
     HIP_CHECK(
@@ -663,7 +663,7 @@ void hiprand_kernel_h_hiprand_discrete_test(double lambda)
         dim3(4), dim3(64), 0, 0,
         output, output_size, discrete_distribution
     );
-    HIP_CHECK(hipPeekAtLastError());
+    HIP_CHECK(hipDeviceSynchronize()); HIP_CHECK(hipPeekAtLastError());
 
     std::vector<unsigned int> output_host(output_size);
     HIP_CHECK(

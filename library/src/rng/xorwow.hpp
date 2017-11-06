@@ -212,6 +212,8 @@ public:
             dim3(s_blocks), dim3(s_threads), 0, m_stream,
             m_engines, m_seed, m_offset
         );
+        if(hipDeviceSynchronize() != hipSuccess)
+            return ROCRAND_STATUS_LAUNCH_FAILURE;
         // Check kernel status
         if(hipPeekAtLastError() != hipSuccess)
             return ROCRAND_STATUS_LAUNCH_FAILURE;
